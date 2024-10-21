@@ -4,32 +4,32 @@ import controller.Validation;
 import model.Matrix;
 
 public class Menu {
-    
+
     public void dislayResult(String msg) {
         Validation v = new Validation();
         Matrix matrix1 = new Matrix();
         Matrix matrix2 = new Matrix();
         matrix1.inputMatrix("1");
         matrix2.inputMatrix("2");
-        Matrix res = new Matrix();
-        if (v.checkMatrix(matrix1, matrix2, 1) && msg.equals("+")) {
-            res = matrix1.additionMatrix(matrix2);
-        } else if (v.checkMatrix(matrix1, matrix2, 1) && msg.equals("-")) {
-            res = matrix1.subtractionMatrix(matrix2);
-        } else if (v.checkMatrix(matrix1, matrix2, 2) && msg.equals("*")) {
-            res = matrix1.multiplicationMatrix(matrix2);
-        } else {
-            System.out.println("Invalid operation specified.");
-            return;
-        }
         System.out.println("-------------Result-------------");
         matrix1.displayMatrix();
         System.out.println(msg);
         matrix2.displayMatrix();
         System.out.println("=");
-        res.displayMatrix();
+        if (v.checkMatrix(matrix1, matrix2, 1) && msg.equals("+")) {
+            matrix1.additionMatrix(matrix2);
+            matrix1.displayMatrix();
+        } else if (v.checkMatrix(matrix1, matrix2, 1) && msg.equals("-")) {
+            matrix1.subtractionMatrix(matrix2);
+            matrix1.displayMatrix();
+        } else if (v.checkMatrix(matrix1, matrix2, 2) && msg.equals("*")) {
+            Matrix res = new Matrix(matrix1.multiplicationMatrix(matrix2));
+            res.displayMatrix();
+        } else {
+            System.out.println("Invalid operation specified.");
+        }
     }
-    
+
     private void menuChoice() {
         System.out.println("==========Caculator program==========");
         System.out.println("1.Addition Matrix");

@@ -22,12 +22,11 @@ public class Validation {
         }
     }
 
-    
-
     public boolean checkMatrix(Matrix matrix1, Matrix matrix2, int mode) {
         //mode 1: add or sub
         //mode 2: multy
-        if ((mode == 1 && matrix1.getRows() == matrix2.getRows() && matrix1.getColums() == matrix2.getColums()) || (mode == 2 && matrix1.getColums() == matrix2.getRows())) {
+        if ((mode == 1 && matrix1.getData().length == matrix2.getData().length && matrix1.getData()[0].length == matrix2.getData()[0].length)
+                || (mode == 2 && matrix1.getData()[0].length == matrix2.getData().length)) {
             return true;
         }
         return false;
